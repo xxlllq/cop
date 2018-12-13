@@ -4,6 +4,7 @@ package com.xxlllq.web.controller;
 import com.xxlllq.dataprovider.entity.User;
 import com.xxlllq.dataprovider.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @author xiangxl
  * @since 2018-12-12
  */
-@RestController
+@Controller
 @RequestMapping("/sys/user")
 public class UserController extends BaseController {
 
@@ -25,11 +26,10 @@ public class UserController extends BaseController {
     private IUserService userService;
 
     @RequestMapping("/index")
-    public List<User> index() {
-        logger.error("asd");
+    public String index() {
+        logger.error("as56d67");
         List<User> list = userService.list();
-        list.get(7);
-        return list;
+        return "user/index";
     }
 
     @RequestMapping("/add")
