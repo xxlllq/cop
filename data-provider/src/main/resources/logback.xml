@@ -25,7 +25,7 @@
         </layout>
     </appender>
 
-    <logger name="com.evget.casst.project" level="INFO" additivity="false">
+    <logger name="com.xxlllq" level="INFO" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="logFile" />
     </logger>

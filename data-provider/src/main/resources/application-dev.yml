@@ -40,10 +40,9 @@ spring:
     content-type: text/html
 
 
-#开发时候，显示SQL执行语句
+#日志显示级别
 logging:
   level:
-    root: DEBUG
     com:
       xxlllq:
         dataprovider: DEBUG

@@ -28,15 +28,21 @@ public class UserController extends BaseController {
     public List<User> index() {
         logger.error("asd");
         List<User> list = userService.list();
+        list.get(7);
         return list;
     }
 
     @RequestMapping("/add")
     public Object add() {
         logger.error("asd");
-        User user = new User();
-        user.setAge(12);
-        return userService.saveOrUpdate(user);
+        try {
+            User user = new User();
+            user.setAge(12);
+            return userService.saveOrUpdate(user);
+        } catch (Exception ex) {
+            logger.error(ex);
+        }
+        return null;
     }
 
 }

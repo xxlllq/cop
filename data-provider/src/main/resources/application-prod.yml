@@ -39,14 +39,14 @@ spring:
     static-locations: classpath:/static/
     content-type: text/html
 
-#开发时候，显示SQL执行语句
+#日志显示级别
 logging:
   level:
     com:
-      evget:
-        casst:
-          project:
-            mapper: ERROR
+      xxlllq:
+        dataprovider: ERROR
+        web: ERROR
+        shiro: ERROR
 
 
   #静态资源访问
