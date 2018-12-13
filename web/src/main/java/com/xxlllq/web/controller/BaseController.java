@@ -6,11 +6,36 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.subject.Subject;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class BaseController {
     protected Logger logger = Logger.getLogger(this.getClass());
+
+    /**
+     * 进入对应index界面，满足RESTful风格
+     *
+     * @return
+     */
+    @RequestMapping(value = "/")
+    public String index(HttpServletRequest request) {
+        String url = "";
+        try {
+            if (request != null) {
+                url = request.getServletPath();
+                if (!StringUtils.isBlank(url)) {
+                    url = url.substring(1);//将/sys/user变成sys/user
+                    if (!"login".equals(url))
+                        return url + "/index";
+                }
+            }
+        } catch (Exception ex) {
+            logger.error(ex);
+        }
+        return "main/index";
+    }
 
     /**
      * 获取当前系统用户

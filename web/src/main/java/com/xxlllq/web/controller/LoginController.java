@@ -10,7 +10,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,14 +33,15 @@ public class LoginController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/")
-    public String index() {
+    @Override
+    public String index(HttpServletRequest request) {
         try {
             User user = getCurrentUser();
             //无当前用户信息，跳转到登录页。
             if (user == null)
                 return "login/index";
             else
-                return "redirect:/organization";
+                return "redirect:/sys/user";
 
         } catch (Exception ex) {
             logger.error(ex);
@@ -86,7 +86,7 @@ public class LoginController extends BaseController {
                 // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
                 // 所以这一步在调用login(token)方法时,它会走到AuthRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
                 subject.login(token);
-                defaultUrl = "redirect:/user";
+                defaultUrl = "redirect:/sys/user";
             }
         } catch (AuthenticationException auth) {
             attributes.addFlashAttribute("msg", "登录认证失败！");

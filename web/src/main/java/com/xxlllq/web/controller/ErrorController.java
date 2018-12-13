@@ -1,5 +1,7 @@
 package com.xxlllq.web.controller;
 
+import com.xxlllq.dataprovider.common.OperateResultEntity;
+import com.xxlllq.dataprovider.sys.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,11 +51,10 @@ public class ErrorController extends BaseController {
      */
     @RequestMapping(value = "/notFound")
     public String notFound(HttpServletRequest request) {
-//        if (isAjax(request)) {
-//            return "redirect:/isAjax";
-//        }
-//        return "redirect:/whetherLogout";
-        return "error/404";
+        if (isAjax(request)) {
+            return "redirect:/error/isAjax";
+        }
+        return "redirect:/error/whetherLogout";
     }
 
     /**
@@ -64,5 +65,35 @@ public class ErrorController extends BaseController {
     @RequestMapping(value = "/serverError")
     public String serverError() {
         return "error/500";
+    }
+
+
+    /**
+     * 是否登出
+     *
+     * @return
+     */
+    @RequestMapping(value = "/whetherLogout")
+    public String whetherLogout() {
+        User user = getCurrentUser();
+        if (user != null) {
+            return "redirect:/main/";//登录状态就跳转到organization页面
+        }
+
+        return "redirect:/login/";//没有就跳转到login界面
+    }
+
+    /**
+     * AJAX请求404错误
+     *
+     * @return
+     */
+    @RequestMapping(value = "/isAjax")
+    @ResponseBody
+    public Object isAjax() {
+        OperateResultEntity resultEntity = new OperateResultEntity();
+        resultEntity.setResult(false);
+        resultEntity.setMsg("请求路径不存在!");
+        return resultEntity;
     }
 }
