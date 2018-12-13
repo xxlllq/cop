@@ -9,6 +9,13 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
+/**
+ * @类名称： CredentialsMatcher
+ * @类描述：密码验证器
+ * @创建人：xiangxl
+ * @创建时间：2018/12/13 11:45
+ * @version：
+ */
 public class CredentialsMatcher extends SimpleCredentialsMatcher {
     protected Logger logger = Logger.getLogger(this.getClass());
 

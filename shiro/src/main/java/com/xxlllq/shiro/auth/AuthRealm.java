@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @项目名称：evget.casst
- * @类名称：AuthRealm
+ * @类名称： AuthRealm
  * @类描述：权限验证
  * @创建人：xiangxl
- * @创建时间：2018/10/21 14:46
+ * @创建时间：2018/12/13 11:44
  * @version：
  */
 @Service

@@ -20,11 +20,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @项目名称：evget.casst
- * @类名称：ShiroConfiguration
+ * @类名称： ShiroConfiguration
  * @类描述：shiro的配置类
  * @创建人：xiangxl
- * @创建时间：2018/10/21 14:46
+ * @创建时间：2018/12/13 11:47
  * @version：
  */
 @Configuration
