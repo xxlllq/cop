@@ -1,6 +1,7 @@
 package com.xxlllq.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xxlllq.dataprovider.sys.mapper.PermissionMapper;
 import com.xxlllq.dataprovider.sys.pojo.Permission;
 import com.xxlllq.dataprovider.sys.service.IPermissionService;
@@ -72,7 +73,12 @@ public class ShiroConfiguration {
 
 //        //加载系统中的权限规则，需要权限验证的URL，可以通过如下加载配置和注解（启用注解方法在本页最后）。
         // permissionService.setDefaultFilterChain(filterChainDefinitionMap);
-        List<Permission> permissions = permissionMapper.getPermissionUrlNotNull();
+
+        List<Permission> permissions = permissionMapper.selectList(new QueryWrapper<Permission>()
+                .select("id, code, url")
+                .isNotNull("url")
+                .eq("enable", 1)
+                .orderByDesc("zindex, code"));
         if (permissions != null && !permissions.isEmpty()) {
             for (Permission permission : permissions) {
                 //anon权限验证，不需要sessionAuth过滤器，其他的需要

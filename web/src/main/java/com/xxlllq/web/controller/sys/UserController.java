@@ -25,7 +25,7 @@ public class UserController extends BaseController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/index")
+    @RequestMapping("/query")
     public String index() {
         logger.error("as56d67");
         List<User> list = userService.list();

@@ -86,10 +86,9 @@ public class LoginController extends BaseController {
                 // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
                 // 所以这一步在调用login(token)方法时,它会走到AuthRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
                 subject.login(token);
-                defaultUrl = "redirect:/organization";
+                defaultUrl = "redirect:/user";
             }
         } catch (AuthenticationException auth) {
-            logger.error("登录认证失败！" + user.getCode() + "," + user.getPassword(), auth);
             attributes.addFlashAttribute("msg", "登录认证失败！");
         } catch (Exception ex) {
             logger.error("token与credentials不匹配！" + user.getCode() + "," + user.getPassword(), ex);
