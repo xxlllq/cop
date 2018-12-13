@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cop.iml" filepath="$PROJECT_DIR$/cop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-provider/data-provider.iml" filepath="$PROJECT_DIR$/data-provider/data-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiro/shiro.iml" filepath="$PROJECT_DIR$/shiro/shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+    </modules>
+  </component>
+</project>

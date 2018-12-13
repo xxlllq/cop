@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.xxlllq</groupId>
+    <artifactId>cop</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>cop</name>
+    <description>通用项目平台</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <module.version>1.0.0</module.version>
+
+        <!--不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。-->
+        <!--<skipTests>true</skipTests>-->
+        <!--不但跳过单元测试的运行，也跳过测试代码的编译，不生成相应的class文件至target/test-classes下。-->
+        <!--<maven.test.skip>true</maven.test.skip>-->
+    </properties>
+
+    <!--相关模块声明-->
+    <modules>
+        <module>data-provider</module>
+        <module>shiro</module>
+        <module>web</module>
+    </modules>
+
+    <!--Springboot starter-web-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- 版本说明：这里统一管理依赖的版本号 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.xxlllq</groupId>
+                <artifactId>data-provider</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xxlllq</groupId>
+                <artifactId>shiro</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xxlllq</groupId>
+                <artifactId>web</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
