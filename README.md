@@ -4,7 +4,7 @@
 * data-provider
 系统数据提供者：包含mapper、service、entity
 
-*shiro
+* shiro
 权限管理模块
 
 * web
