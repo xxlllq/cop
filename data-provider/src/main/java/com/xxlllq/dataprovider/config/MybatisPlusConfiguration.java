@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.xxlllq.dataprovider.mapper")
+@MapperScan("com.xxlllq.dataprovider.*.mapper")
 public class MybatisPlusConfiguration {
     /**
      * 分页插件

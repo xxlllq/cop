@@ -20,8 +20,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!--模块版本号-->
         <module.version>1.0.0</module.version>
-
+        <maven-compiler.version>3.6.0</maven-compiler.version>
         <!--不执行测试用例，但编译测试用例类生成相应的class文件至target/test-classes下。-->
         <!--<skipTests>true</skipTests>-->
         <!--不但跳过单元测试的运行，也跳过测试代码的编译，不生成相应的class文件至target/test-classes下。-->
@@ -69,7 +70,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

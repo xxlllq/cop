@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>安科院管理系统</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login/login.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<body>
+<div class="bg">
+    <div class="wel">安科院后台管理系统</div>
+    <form id="loginFrom" action="submit" method="post">
+        <div class="user">
+            <div class="name-psd" style="">账&nbsp;&nbsp;&nbsp;号</div>
+            <input type="text" id="code" name="code" value="admin"/>
+        </div>
+        <div class="password">
+            <div class="name-psd">密&nbsp;&nbsp;&nbsp;码</div>
+            <input class="" type="password" id="password" name="password" value="123456"/>
+        </div>
+        <!--/*@thymesVar id="msg" type=""*/-->
+        <p class="message" id="message" th:text="${msg}"></p>
+        <input class="btn" id="btn" type="button" name="登录" value="登录"/>
+    </form>
+</div>
+</body>
+<script>
+    //信息保存按钮事件
+    $("#btn").click(function () {
+        var username = $("#code").val();
+        if (!username) {
+            $("#code").html("账号不能为空！");
+            return false;
+        }
+
+        var password = $("#password").val();
+        if (!password) {
+            $("#message").html("密码不能为空！");
+            return false;
+        }
+        $("#message").html("");
+        $("#loginFrom").submit();
+    })
+
+</script>
+
+</html>

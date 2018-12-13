@@ -19,7 +19,8 @@
     <properties>
         <java.version>1.8</java.version>
         <!--Mybatis-Plus-->
-        <mybatis-plus.version>3.0.6</mybatis-plus.version>
+        <mybatis-plus-springboot.version>3.0.6</mybatis-plus-springboot.version>
+
         <!--数据库相关-->
         <mysql.connector.version>5.1.35</mysql.connector.version>
         <druid.version>1.0.11</druid.version>
@@ -32,6 +33,8 @@
         <log4j.version>1.3.4.RELEASE</log4j.version>
         <!--Apache工具组件-->
         <commons.lang3.version>3.6</commons.lang3.version>
+        <!--codec 用于DigestUtils.md5Hex-->
+        <codec.version>1.11</codec.version>
         <!--tomcat.embed-https://blog.csdn.net/u013189824/article/details/80507849-->
         <tomcat.embed.version>8.5.34</tomcat.embed.version>
     </properties>
@@ -58,7 +61,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
+            <version>${mybatis-plus-springboot.version}</version>
         </dependency>
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
@@ -84,6 +87,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons.lang3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${codec.version}</version>
+        </dependency>
         <!--tomcat.embed-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -92,5 +100,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 </project>

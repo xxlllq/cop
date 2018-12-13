@@ -2,9 +2,7 @@
 <list>
     <module id="sys">
         <name>user</name>
-    </module>
-    <module id="test">
-        <name>test_order</name>
         <name>role</name>
+        <name>permission</name>
     </module>
 </list>

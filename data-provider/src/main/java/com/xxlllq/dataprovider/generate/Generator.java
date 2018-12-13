@@ -35,7 +35,7 @@ public class Generator {
 
                 // 数据源配置----修改这里
                 DataSourceConfig dsc = new DataSourceConfig();
-                dsc.setUrl("jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&useSSL=false&characterEncoding=utf8");
+                dsc.setUrl("jdbc:mysql://localhost:3306/cop?useUnicode=true&useSSL=false&characterEncoding=utf8");
                 // dsc.setSchemaName("public");
                 dsc.setDriverName("com.mysql.jdbc.Driver");
                 dsc.setUsername("root");
@@ -77,7 +77,7 @@ public class Generator {
                 strategy.setNaming(NamingStrategy.underline_to_camel);
                 strategy.setColumnNaming(NamingStrategy.underline_to_camel);
 //                Entity继承的父类
-//                strategy.setSuperEntityClass("com.xxlllq.entity.entity.BaseEntity");
+                strategy.setSuperEntityClass("com.xxlllq.dataprovider.base.BaseEntity");
                 strategy.setEntityLombokModel(true);
                 strategy.setRestControllerStyle(true);
 //                Controller继承的父类

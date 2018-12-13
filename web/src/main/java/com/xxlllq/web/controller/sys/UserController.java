@@ -1,12 +1,12 @@
-package com.xxlllq.web.controller;
+package com.xxlllq.web.controller.sys;
 
 
-import com.xxlllq.dataprovider.entity.User;
-import com.xxlllq.dataprovider.service.IUserService;
+import com.xxlllq.dataprovider.sys.pojo.User;
+import com.xxlllq.dataprovider.sys.service.IUserService;
+import com.xxlllq.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class UserController extends BaseController {
         logger.error("asd");
         try {
             User user = new User();
-            user.setAge(12);
+            user.setCode("asd");
             return userService.saveOrUpdate(user);
         } catch (Exception ex) {
             logger.error(ex);

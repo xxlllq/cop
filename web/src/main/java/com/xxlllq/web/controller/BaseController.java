@@ -1,19 +1,13 @@
 package com.xxlllq.web.controller;
 
-//import com.xxlllq.springboot_mybatisplus.entity.User;
-import com.xxlllq.dataprovider.entity.User;
+import com.xxlllq.dataprovider.sys.pojo.User;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class BaseController {
     protected Logger logger = Logger.getLogger(this.getClass());

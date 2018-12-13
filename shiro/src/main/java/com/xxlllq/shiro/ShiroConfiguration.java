@@ -1,8 +1,12 @@
 package com.xxlllq.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.xxlllq.dataprovider.sys.mapper.PermissionMapper;
+import com.xxlllq.dataprovider.sys.pojo.Permission;
+import com.xxlllq.dataprovider.sys.service.IPermissionService;
 import com.xxlllq.shiro.auth.AuthRealm;
 import com.xxlllq.shiro.auth.CredentialsMatcher;
+import com.xxlllq.shiro.auth.SessionAuthenticationFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -15,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,11 +34,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfiguration {
 //    @Autowired
-//    private  PermissionService permissionService;
+//    private IPermissionService permissionService;
 
     //不直接注入PermissionService，是因为这里@Autowired会导致事务失败，所以用Mapper
-//    @Autowired
-//    private PermissionMapper permissionMapper;
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件过滤器
@@ -60,21 +65,21 @@ public class ShiroConfiguration {
         // 执行SecurityUtils.getSubject().logout()，会直接跳转到shiroFilterFactoryBean.setLoginUrl(); 设置的 url
         filterChainDefinitionMap.put("/login/logout", "logout");
 
-//        //自定义session拦截器
-//        Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
-//        filters.put("sessionAuth", new SessionAuthenticationFilter());
-//        shiroFilterFactoryBean.setFilters(filters);
-//
-////        //加载系统中的权限规则，需要权限验证的URL，可以通过如下加载配置和注解（启用注解方法在本页最后）。
-//        // permissionService.setDefaultFilterChain(filterChainDefinitionMap);
-//        List<Permission> permissions = permissionMapper.getPermissionUrlNotNull();
-//        if (permissions != null && !permissions.isEmpty()) {
-//            for (Permission permission : permissions) {
-//                //anon权限验证，不需要sessionAuth过滤器，其他的需要
-//                if (!StringUtils.isBlank(permission.getCode()))
-//                    filterChainDefinitionMap.put(permission.getUrl(), "anon".equals(permission.getCode()) ? permission.getCode() : ("sessionAuth," + permission.getCode()));
-//            }
-//        }
+        //自定义session拦截器
+        Map<String, Filter> filters = shiroFilterFactoryBean.getFilters();
+        filters.put("sessionAuth", new SessionAuthenticationFilter());
+        shiroFilterFactoryBean.setFilters(filters);
+
+//        //加载系统中的权限规则，需要权限验证的URL，可以通过如下加载配置和注解（启用注解方法在本页最后）。
+        // permissionService.setDefaultFilterChain(filterChainDefinitionMap);
+        List<Permission> permissions = permissionMapper.getPermissionUrlNotNull();
+        if (permissions != null && !permissions.isEmpty()) {
+            for (Permission permission : permissions) {
+                //anon权限验证，不需要sessionAuth过滤器，其他的需要
+                if (!StringUtils.isBlank(permission.getCode()))
+                    filterChainDefinitionMap.put(permission.getUrl(), "anon".equals(permission.getCode()) ? permission.getCode() : ("sessionAuth," + permission.getCode()));
+            }
+        }
 
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);

@@ -9,7 +9,7 @@ server:
 #spring
 spring:
   datasource:
-    name: mybatis_plus
+    name: cop
     #    useAffectedRows，sql执行后返回受影响的行数
     url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.name}?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useAffectedRows=true&useSSL=false
     username: root
@@ -39,6 +39,11 @@ spring:
     static-locations: classpath:/static/
     content-type: text/html
 
+# mybatis-plus
+mybatis-plus:
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
 
 #日志显示级别
 logging:
@@ -53,5 +58,5 @@ logging:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/static/,classpath:/public/,file:${server.upload-path},file:${server.emergency-plan-recs-folder},file:${server.emergency-plan-content-folder},file:${server.emergency-plan-accident-folder}
+    static-locations: classpath:/static/,classpath:/public/
 
