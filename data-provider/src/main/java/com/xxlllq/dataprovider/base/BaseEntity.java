@@ -2,6 +2,7 @@ package com.xxlllq.dataprovider.base;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * @version：
  */
 @Data
-public class BaseEntity {
+public class BaseEntity implements Serializable {
     public String id;
     /**
      * 添加数据的用户id
