@@ -31,6 +31,7 @@ spring:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
 
+  # thymeleaf
   thymeleaf:
     prefix: classpath:/templates/
     sufifix: .html
@@ -38,6 +39,12 @@ spring:
     mode: LEGACYHTML5
     static-locations: classpath:/static/
     content-type: text/html
+
+  #静态资源访问
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/,classpath:/public/
 
 # mybatis-plus
 mybatis-plus:
@@ -54,9 +61,5 @@ logging:
         web: DEBUG
         shiro: DEBUG
 
-  #静态资源访问
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/static/,classpath:/public/
+
 
