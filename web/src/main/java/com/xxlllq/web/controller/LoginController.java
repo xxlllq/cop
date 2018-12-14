@@ -42,7 +42,7 @@ public class LoginController extends BaseController {
             if (user == null)
                 return "login/index";
             else
-                return "redirect:/sys/user";
+                return "redirect:/sys/user/";
 
         } catch (Exception ex) {
             logger.error(ex);

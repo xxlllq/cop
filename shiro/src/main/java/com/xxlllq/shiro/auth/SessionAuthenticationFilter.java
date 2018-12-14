@@ -1,6 +1,8 @@
 package com.xxlllq.shiro.auth;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 
@@ -11,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @类名称： SessionAuthenticationFilter
- * @类描述：控制系统用户在session生命周期的跳转
- *          无session时：浏览器链接，跳转到登录页
- *                       AJAX请求，返回相应的Json提示信息
+ * @类描述：控制系统用户在session生命周期的跳转 无session时：浏览器链接，跳转到登录页
+ * AJAX请求，返回相应的Json提示信息
  * @创建人：xiangxl
  * @创建时间：2018/12/13 11:45
  * @version：
@@ -30,6 +31,22 @@ public class SessionAuthenticationFilter extends FormAuthenticationFilter {
                 return true;
             }
         } else {
+            Subject subject = getSubject(request, response);
+            // 如果是记住我登录的，则需要处理一下
+            // isRemembered为true、isAuthenticated为false
+            if (!subject.isAuthenticated() && subject.isRemembered()) {
+                // 通过记住我第一次进程序，并且保存的principal中有内容，添加用户到session
+                Object principal = subject.getPrincipal();
+                if (principal != null) {
+                    Session subSession = subject.getSession();
+                    if (subSession.getAttribute("user") == null)//用户没有session，但是记住我中有数据，复制给当前用户session
+                        subSession.setAttribute("user", principal);
+                    return true;
+                }
+
+                return false;
+            }
+
             HttpServletRequest httpRequest = WebUtils.toHttp(request);
             //当AJAX请求时，session过期，返回相关参数，供JS控制
             if (isAjax(httpRequest)) {
