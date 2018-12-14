@@ -7,6 +7,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class LoginController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/submit", method = {RequestMethod.POST})
-    public String loginSubmit(User user, RedirectAttributes attributes) {
+    public String loginSubmit(User user, Boolean rememberMe, RedirectAttributes attributes) {
         String defaultUrl = "redirect:/login/";
         if (user == null) {
             attributes.addFlashAttribute("msg", "请求参数有误！");
@@ -77,8 +78,9 @@ public class LoginController extends BaseController {
             }
 
             // 1、 封装用户名、密码、是否记住我到token令牌对象 [支持记住我]
-            AuthenticationToken token = new UsernamePasswordToken(
-                    user.getCode(), user.getPassword(), true);
+            UsernamePasswordToken token = new UsernamePasswordToken(
+                    user.getCode(), user.getPassword());
+            token.setRememberMe(rememberMe == null ? false : true);
             // 2、 Subject调用login
             Subject subject = SecurityUtils.getSubject();
             if (subject != null) {
@@ -86,7 +88,7 @@ public class LoginController extends BaseController {
                 // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
                 // 所以这一步在调用login(token)方法时,它会走到AuthRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
                 subject.login(token);
-                defaultUrl = "redirect:/sys/user";
+                defaultUrl = "redirect:/sys/user/";
             }
         } catch (AuthenticationException auth) {
             attributes.addFlashAttribute("msg", "登录认证失败！");

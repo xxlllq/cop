@@ -77,7 +77,7 @@ public class ErrorController extends BaseController {
     public String whetherLogout() {
         User user = getCurrentUser();
         if (user != null) {
-            return "redirect:/main/";//登录状态就跳转到organization页面
+            return "redirect:/sys/user/";//登录状态就跳转到organization页面
         }
 
         return "redirect:/login/";//没有就跳转到login界面

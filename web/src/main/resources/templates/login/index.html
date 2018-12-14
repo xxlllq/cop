@@ -39,7 +39,7 @@
             <ul>
                 <li>
                     <label class="anim">
-                        <input type="checkbox" class="checkbox">
+                        <input type="checkbox" name="rememberMe" class="checkbox">
                         <span>记住我</span>
                     </label>
                 </li>
@@ -48,13 +48,13 @@
                 </li>
             </ul>
         </div>
-        <p class="message" id="message" th:text="${msg}"></p>
+        <p class="message" id="message" th:text="${msg}" style="width: 100%;text-align: center;color: #f7296f"></p>
         <input type="submit" id="btn" value="登 录">
     </form>
 </div>
 
 <div class="footer">
-    <p>Copyright &copy; 2018.COP.</a>
+    <p>Copyright &copy; 2018.COP</a>
     </p>
 </div>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
@@ -64,7 +64,7 @@
     $("#btn").click(function () {
         var username = $("#code").val();
         if (!username) {
-            $("#code").html("账号不能为空！");
+            $("#message").html("账号不能为空！");
             return false;
         }
 

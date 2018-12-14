@@ -54,7 +54,7 @@ public class AuthRealm extends AuthorizingRealm {
         UsernamePasswordToken utoken = (UsernamePasswordToken) token;//获取用户输入的token
         String username = utoken.getUsername();
         User user = userService.getUserByCode(username);
-        if (user == null) {
+        if (StringUtils.isBlank(username)) {
             // 用户不存在
             return null;
         } else {
