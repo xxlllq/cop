@@ -2,6 +2,7 @@ package com.xxlllq.shiro.auth;
 
 import com.xxlllq.dataprovider.sys.entity.PermissionEntity;
 import com.xxlllq.dataprovider.sys.entity.RoleEntity;
+import com.xxlllq.dataprovider.sys.pojo.Role;
 import com.xxlllq.dataprovider.sys.pojo.User;
 import com.xxlllq.dataprovider.sys.service.IRoleService;
 import com.xxlllq.dataprovider.sys.service.IUserService;
@@ -92,15 +93,19 @@ public class AuthRealm extends AuthorizingRealm {
             if (user != null) {
                 if (user.getCode().equals("admin")) {
                     // 超级管理员，添加所有角色、添加所有权限
-                    List<RoleEntity> roleEntities = roleService.list();
-                    if (roleEntities != null && !roleEntities.isEmpty()) {
-                        roleEntities.forEach(m -> {
-                            authorizationInfo.addRole(m.getCode());
-                        });
-                    } else
-                        authorizationInfo.addRole("administrator");
+                    try {
+                        List<Role> roleEntities = roleService.list();
+                        if (roleEntities != null && !roleEntities.isEmpty()) {
+                            roleEntities.forEach(m -> {
+                                authorizationInfo.addRole(m.getCode());
+                            });
+                        } else
+                            authorizationInfo.addRole("administrator");
 
-                    authorizationInfo.addStringPermission("*");
+                        authorizationInfo.addStringPermission("*");
+                    } catch (Exception ex) {
+                        Exception 说的 = ex;
+                    }
                 } else {
                     // 普通用户，查询用户的角色，根据角色查询权限
                     try {

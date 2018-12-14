@@ -89,7 +89,6 @@ public class ShiroConfiguration {
                     filterChainDefinitionMap.put(permission.getUrl(), "anon".equals(permission.getCode()) ? permission.getCode() : ("sessionAuth," + permission.getCode()));
             }
         }
-        filterChainDefinitionMap.put("/** ", "user");
 
         shiroFilterFactoryBean
                 .setFilterChainDefinitionMap(filterChainDefinitionMap);

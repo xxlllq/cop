@@ -54,7 +54,6 @@ logging:
         web: ERROR
         shiro: ERROR
 
-
   #静态资源访问
   mvc:
     static-path-pattern: /**

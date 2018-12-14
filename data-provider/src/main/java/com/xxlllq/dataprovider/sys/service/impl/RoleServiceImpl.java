@@ -3,6 +3,7 @@ package com.xxlllq.dataprovider.sys.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xxlllq.dataprovider.sys.entity.RoleEntity;
 import com.xxlllq.dataprovider.sys.mapper.RoleMapper;
+import com.xxlllq.dataprovider.sys.pojo.Role;
 import com.xxlllq.dataprovider.sys.service.IRoleService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @since 2018-12-13
  */
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> implements IRoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
     /**
      * 获取指定用户具有的角色和权限
      *
