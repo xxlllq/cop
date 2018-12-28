@@ -2,6 +2,7 @@ package com.xxlllq.web.controller;
 
 import com.xxlllq.dataprovider.sys.pojo.User;
 import com.xxlllq.dataprovider.sys.service.IUserService;
+import com.xxlllq.dataprovider.util.SnowFlakeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -37,6 +38,7 @@ public class LoginController extends BaseController {
     @Override
     public String index(HttpServletRequest request) {
         try {
+
             User user = getCurrentUser();
             //无当前用户信息，跳转到登录页。
             if (user == null)

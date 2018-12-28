@@ -1,7 +1,9 @@
 package com.xxlllq.dataprovider.sys.pojo;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xxlllq.dataprovider.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -50,7 +52,8 @@ public class User extends BaseEntity {
     /**
      * 用户账号有效期
      */
-    private LocalDateTime validateDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date validateDate;
 
     /**
      * 备注
